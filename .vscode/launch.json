@@ -1,0 +1,56 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "RoboGame",
+            "request": "launch",
+            "mainClass": "RoboGame",
+            "cwd":"${workspaceFolder}/robo_code/code",
+        },
+        {
+            "type": "java",
+            "name": "RoboParser",
+            "request": "launch",
+            "mainClass": "Parser",
+            "cwd":"${workspaceFolder}/robo_code/code"
+        },
+        {
+            "type": "java",
+            "name": "HuffmanCoding text1 0",
+            "request": "launch",
+            "mainClass": "HuffmanCoding",
+            "args": [
+                "strings/data/test1.txt",
+                "0"
+            ]
+        },
+        {
+            "type": "java",
+            "name": "KMP text3 cont",
+            "request": "launch",
+            "mainClass": "KMP",
+            "args": [
+                "strings/data/test3.txt",
+                "containing"
+            ]
+        },
+        {
+            "type": "java",
+            "name": "LempelZivCompress text4",
+            "request": "launch",
+            "mainClass": "LempelZivCompress",
+            "args": "strings/data/test4.txt"
+        },
+        {
+            "type": "java",
+            "name": "LempelZivDecompress text4",
+            "request": "launch",
+            "mainClass": "LempelZivDecompress",
+            "args": "strings/data/test4.txt"
+        }
+    ]
+}
