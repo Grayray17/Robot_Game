@@ -24,7 +24,7 @@
             "request": "launch",
             "mainClass": "HuffmanCoding",
             "args": [
-                "strings/data/test1.txt",
+                "data/test1.txt",
                 "0"
             ]
         },
@@ -34,7 +34,7 @@
             "request": "launch",
             "mainClass": "KMP",
             "args": [
-                "strings/data/test3.txt",
+                "data/test3.txt",
                 "containing"
             ]
         },
@@ -43,14 +43,14 @@
             "name": "LempelZivCompress text4",
             "request": "launch",
             "mainClass": "LempelZivCompress",
-            "args": "strings/data/test4.txt"
+            "args": "data/test4.txt"
         },
         {
             "type": "java",
             "name": "LempelZivDecompress text4",
             "request": "launch",
             "mainClass": "LempelZivDecompress",
-            "args": "strings/data/test4.txt"
+            "args": "data/test4.txt"
         }
     ]
 }
