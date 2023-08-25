@@ -19,6 +19,7 @@ public class HuffmanCoding {
         } else {
             try {
                 Scanner s = new Scanner(new File(args[0]));
+            
 
                 // Read the entire file into one String.
                 StringBuilder fileText = new StringBuilder();

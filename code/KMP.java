@@ -6,8 +6,8 @@ public class KMP {
     public static void main(String[] args) {
         if (args.length != 2) {
             System.out.println("Please call this program with " +
-                               "two arguments which is the input file name " +
-                               "and the string to search.");
+                    "two arguments which is the input file name " +
+                    "and the string to search.");
         } else {
             try {
                 Scanner s = new Scanner(new File(args[0]));
@@ -32,7 +32,47 @@ public class KMP {
      * exists, or -1 if it doesn't.
      */
     public static int search(String text, String pattern) {
-        // TODO
-        return -1;
+        int index = 0;
+        int[] lps = new int[pattern.length()];
+        createPrefixSuffixArray(pattern, lps);
+        int i = 0;
+        int j = 0;
+        int textLength = text.length();
+        while (i < textLength) {
+            if (pattern.charAt(j) == text.charAt(i)) {
+                j++;
+                i++;
+            }
+            if (j == pattern.length())
+                return i - j;
+            else if (i < textLength && pattern.charAt(j) != text.charAt(i)) {
+                if (j != 0) {
+                    j = lps[j - 1];
+                } else {
+                    i++;
+                }
+            }
+        }
+        return index;
+    }
+
+    public static void createPrefixSuffixArray(String pattern, int[] lps) {
+        lps[0] = 0;
+        int index = 0;
+        int i = 1;
+        while (i < pattern.length()) {
+            if (pattern.charAt(i) == pattern.charAt(index)) {
+                lps[i] = index;
+                i++;
+                index++;
+            } else {
+                if (index != 0) {
+                    index = lps[-1];
+                } else {
+                    lps[i] = 0;
+                    i++;
+                }
+            }
+        }
     }
 }

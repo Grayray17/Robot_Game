@@ -11,7 +11,8 @@ import javax.swing.JFileChooser;
  */
 public class Parser {
 
-	/**
+
+    /**
 	 * Top level parse method, called by the World
 	 */
 	static RobotProgramNode parseFile(File code) {
@@ -81,14 +82,26 @@ public class Parser {
 	static Pattern CLOSEPAREN = Pattern.compile("\\)");
 	static Pattern OPENBRACE = Pattern.compile("\\{");
 	static Pattern CLOSEBRACE = Pattern.compile("\\}");
+	static Pattern LOOPS = Pattern.compile("loop");
+
+	static Pattern WHILE = Pattern.compile("while");
+	static Pattern ACTION = Pattern.compile("move|turnL|turnR|wait|takeFuel");
+	
+	static Pattern SENSOR = Pattern.compile("fuelLeft|oppLR|oppFB|numBarrels|barrelLR|barrelFB|wallDist");
+	static Pattern RELOP = Pattern.compile("lt|gt|eq");
+	static Pattern IF = Pattern.compile("if");
+	static Pattern STATEMENT = Pattern.compile(LOOPS.pattern() + "|" + ACTION.pattern() + "|" + IF.pattern() + "|" + WHILE.pattern());
 
 	/**
 	 * See assignment handout for the grammar.
 	 */
 	static RobotProgramNode parseProgram(Scanner s) {
 		// THE PARSER GOES HERE
-
-		return null;
+		programNode node = new programNode();
+		while(s.hasNext(STATEMENT)){
+			node.statementNodes.add(new Statement(s));
+		}
+		return node;
 	}
 
 	// utility methods for the parser
@@ -166,9 +179,28 @@ public class Parser {
 			return true;
 		} else {
 			return false;
-		}
+		}	
 	}
 
 }
 
 // You could add the node classes here, as long as they are not declared public (or private)
+
+class programNode implements RobotProgramNode{
+    public List<Statement> statementNodes =  new ArrayList<>();
+    @Override
+    public void execute(Robot robot) {
+        // TODO Auto-generated method stub
+        for(Statement s : statementNodes){
+           s.execute(robot);
+        }
+    }
+
+    public String toString(){
+        List<String> list = new ArrayList<>();
+        for(Statement s : statementNodes){
+           list.add(s.toString());
+        }
+        return String.join( " , ", list);
+    }
+}
